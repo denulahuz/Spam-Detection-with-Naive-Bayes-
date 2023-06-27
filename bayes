@@ -1,0 +1,25 @@
+import numpy as np
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+# Load the email data
+X, y = load_email_data()
+
+# Create a CountVectorizer to convert text into numerical features
+vectorizer = CountVectorizer()
+
+# Transform the text into feature vectors
+X = vectorizer.fit_transform(X)
+
+# Create a Naive Bayes classifier
+classifier = MultinomialNB()
+
+# Train the classifier
+classifier.fit(X, y)
+
+# Make predictions
+new_emails = ["This is a spam email.", "This is a legitimate email."]
+X_new = vectorizer.transform(new_emails)
+predictions = classifier.predict(X_new)
+
+print("Predictions:", predictions)
